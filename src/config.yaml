@@ -11,22 +11,15 @@ config:
 # Command configuration.
 commands:
   faq:
-    messages: # Each key in here describes the faq message sent by the bot. I.e. 'license' sets the `faq license` command, with it's corresponding short description and actual value contained below it.
-      license:
-        description: "Show license information for this bot"
+    messages: # Each key in here describes the faq message sent by the bot. I.e. 'quick-links' sets the `faq quick-links` command, with it's corresponding short description and actual value contained below it.
+      quick-links:
+        description: Shortcuts to various makedeb websites
         value: |
-          Copyright 2022 makedeb Development Team.
-          See the source code on [GitHub](https://github.com/makedeb/makedeb-matrix) for copying conditions.
-
-      aur-support:
-        description: "Describe makedeb's support for AUR PKGBUILDs"
-        value: |
-          > Does makedeb support PKGBUILDs from the AUR?
-
-          makedeb does not, and will **never** support PKGBUILDs from the Arch User Repository.
-
-          The PKGBUILDs on the AUR are intended for use by makepkg (the build tool on Arch Linux), which uses a different PKGBUILD spec than makedeb, creating potential problems between the two tools.
-
+          makedeb Homepage: https://www.makedeb.org/
+          makedeb Docs: https://docs.makedeb.org/
+          makedeb Package Repository: https://mpr.makedeb.org/
+          makedeb Git Repositories: https://github.com/makedeb/
+      
       installing:
         description: Instructions for installing makedeb
         value: |
@@ -35,10 +28,15 @@ commands:
             - Arch Linux based systems: [AUR](https://docs.makedeb.org/home/installing/arch-user-repository/)
             - OS-Independent: [Docker](https://docs.makedeb.org/home/installing/docker/)
 
-      quick-links:
-        description: Shortcuts to various makedeb websites
+      aur-support:
+        description: "Describe makedeb's support for AUR PKGBUILDs"
         value: |
-          makedeb Homepage: https://www.makedeb.org/
-          makedeb Docs: https://docs.makedeb.org/
-          makedeb Package Repository: https://mpr.makedeb.org/
-          makedeb Git Repositories: https://github.com/makedeb/
+          makedeb does not, and will **never** support PKGBUILDs from the Arch User Repository.
+
+          The PKGBUILDs on the AUR are intended for use by makepkg (the build tool on Arch Linux), which uses a different PKGBUILD spec than makedeb, creating potential problems between the two tools.
+
+      license:
+        description: "Show license information for this bot"
+        value: |
+          Copyright 2022 makedeb Development Team.
+          See the source code on [GitHub](https://github.com/makedeb/makedeb-matrix) for copying conditions.
