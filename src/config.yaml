@@ -1,7 +1,7 @@
 # Authentication information.
 auth:
   homeserver: "https://matrix.hunterwittenborn.com"
-  username: "kavplex"
+  username: "makedeb"
   access_token: "your-access-token"
 
 # Bot configuration.
