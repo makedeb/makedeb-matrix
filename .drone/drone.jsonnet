@@ -2,6 +2,8 @@ local buildAndPublish() = {
     name: "publish-and-deploy",
     kind: "pipeline",
     type: "docker",
+    trigger: {branch: ["main"]},
+
     volumes: [
         {name: "docker", host: {path: "/var/run/docker.sock"}},
         {name: "docker-compose", host: {path: "/usr/bin/docker-compose"}},
