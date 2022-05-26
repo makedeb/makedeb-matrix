@@ -22,8 +22,8 @@ find ./ -mindepth 1 -maxdepth 1 -exec rm -rf '{}' +
 cd -
 find ./ -mindepth 1 -maxdepth 1 -exec cp -R '{}' "${deploy_dir}/{}" \;
 
-
 cd "${deploy_dir}"
+sed "s|your-access-token|${makedeb_matrix_api_token}|g" -i config.yaml
 ./service.sh start
 
 # vim: set sw=4 expandtab:
