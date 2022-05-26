@@ -5,13 +5,13 @@ set -e
 
 case "${1}" in
     start)
-        docker compose up -d --no-build
+        docker-compose up -d
         ;;
     stop)
-        docker compose down --remove-orphans
+        docker-compose down --remove-orphans
         ;;
     update)
-        docker compose pull
+        docker-compose pull
         ;;
 esac
 

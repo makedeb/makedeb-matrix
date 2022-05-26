@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eu
+set -eux
 
 deploy_dir='/var/www/apps/makedeb-matrix'
 
