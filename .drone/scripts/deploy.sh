@@ -1,22 +1,29 @@
-#!/usr/bin/bash
-set -ex
+#!/usr/bin/env bash
+set -eu
 
-# Set up config file.
-sed -i "s|your-access-token|${makedeb_matrix_api_token}|" src/config.yaml
+deploy_dir='/var/www/apps/makedeb-matrix'
 
-# Make sure needed directories exist.
-cd /var/www/apps/makedeb-matrix/
-
-if ! [[ -d ./data/makedeb-matrix/ ]]; then
-	mkdir ./data/makedeb-matrix/ -p
+# Create dir.
+if ! [[ -d "${deploy_dir}" ]]; then
+    mkdir -p "${deploy_dir}"
 fi
 
-# Copy config to deployment directory.
+# Stop current services.
+cd "${deploy_dir}"
+
+if [[ -f './service.sh' ]]; then
+    ./service.sh stop
+fi
+
+# Delete files of current deployed service.
+find ./ -mindepth 1 -maxdepth 1 -exec rm -rf '{}' +
+
+# Copy files for new deployment.
 cd -
-cp src/config.yaml /var/www/apps/makedeb-matrix/data/config.yaml
+find ./ -mindepth 1 -maxdepth 1 -exec cp -R '{}' "${deploy_dir}/{}" \;
 
-# Bring up containers.
-cp docker-compose.yml /var/www/apps/makedeb-matrix/docker-compose.yml
 
-cd /var/www/apps/makedeb-matrix/
-docker-compose up -d
+cd "${deploy_dir}"
+./service.sh start
+
+# vim: set sw=4 expandtab:
