@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import cfg
 import logging
+import traceback
+import util
 
 import simplematrixbotlib as botlib
 
@@ -42,14 +44,20 @@ def main():
                 msg = f"Unknown command `{cfg.cmd}`.\n"
             msg += f"Type `{prefix} help` for a list of available commands."
 
-            await cfg.bot.api.send_markdown_message(room.room_id, msg)
+            await util.send_bot_markdown_message(room.room_id, msg)
             return
 
         # Set up environment for commands, and run the command.
         cfg.room = room
         cfg.room_id = room.room_id
 
-        await cfg.cmd_definitions[cfg.cmd][0]()
+        try:
+            await cfg.cmd_definitions[cfg.cmd][0]()
+        except Exception:
+            await util.send_bot_markdown_message(room.room_id, f"There was an error processing your request. Please try again, or report an issue with `{cfg.prefix} faq license`.")
+            logging.error(
+                traceback.format_exc()
+            )
 
     cfg.bot.run()
 

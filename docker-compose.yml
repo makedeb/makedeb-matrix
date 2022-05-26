@@ -4,4 +4,4 @@ services:
     build: ./
     image: proget.hunterwittenborn.com/docker/makedeb/makedeb-matrix
     volumes:
-      - ./data/makedeb-matrix/config.yaml:/config.yaml
+      - ./config.yaml:/config.yaml
